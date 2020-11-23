@@ -1,0 +1,40 @@
+<div class="col-4 border border-info m-3 p-2 rounded">
+    <div *ngFor="let user of users" class="card m-2 p-1 bg-ligth text-dark">
+        <div class="container-fluid row">
+            <div class="col-4">
+                <img class="img-thumbnail rounded float-left" src= '{{ user.avatar }}' alt="">
+            </div>
+            <div class="col-8 mt-5">
+                <h5>
+                    {{ user.first_name + " " + user.last_name }}
+                    <span class="badge badge-pill badge-primary float-right">
+                        #{{ user.id | number:'2.0-0'}}
+                    </span>
+                </h5>
+        
+                <div class="row card-text pl-4">
+                    {{ user.email }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid text-white bg-dark p-2 m-1">
+    <h1 class="col">Json de API-REST local</h1>
+</div>
+
+<div *ngFor="let valor of prueba" class="border border-info m-2 p-2 rounded">
+    <div class="card m-2 p-3 bg-ligth text-dark">
+        <h5>
+            <span class="badge badge-pill badge-primary float-left">
+                #{{ valor.idDiagnostico | number:'2.0-0'}}
+            </span>
+
+            <span class="badge badge-pill badge-info float-left ml-3 mr-3">
+                #{{ valor.idAreaFormacion | number:'2.0-0'}}
+            </span>
+            {{ valor.descripcion }}
+        </h5>
+    </div>
+</div>
