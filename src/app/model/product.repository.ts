@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Product } from './product.model';
 import { RestDataSource } from './rest.datasource';
 import { StaticDataSource } from './static.datasource';
@@ -7,8 +7,8 @@ export class ProductRepository {
   private products: Product[] = [];
   private categories: string[] = [];
  
-  constructor(private dataSource: RestDataSource) { //inyeccion de dependencias
-    dataSource.getProducts().subscribe((data) => {
+  constructor(private dataSource: RestDataSource) { 
+    this.dataSource.getProducts().subscribe((data) => {
       this.products = data;
       this.categories = data
         .map((p) => p.category)
@@ -16,7 +16,7 @@ export class ProductRepository {
         .sort();
     });
   }
-  
+
   getProducts(category: string = null): Product[] {
     return this.products.filter(
       (p) => category == null || category == p.category
