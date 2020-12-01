@@ -4,17 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { StoreModule } from './store/store.module';
 
-import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from '@angular/router';
 import { StoreComponent } from './store/store.component';
-import { Cart } from './model/cart.model';
 import { CartDetailComponent } from './store/cartDetail.component';
 import { CheckOutComponent } from './store/checkout.component';
 import { StoreFirstGuard } from './storeFirst.guard';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule, StoreModule,
@@ -28,8 +26,12 @@ import { StoreFirstGuard } from './storeFirst.guard';
         path: 'cart', 
         component: CartDetailComponent,
         canActivate: [StoreFirstGuard],
-      },
-      { 
+      }, {
+        path: 'admin', 
+        loadChildren: () => import("./admin/admin.module")
+        .then(m => m.AdminModule),
+        canActivate: [StoreFirstGuard],
+      }, { 
         path: 'checkout', 
         component: CheckOutComponent,
         canActivate: [StoreFirstGuard],
